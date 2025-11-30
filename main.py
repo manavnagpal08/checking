@@ -1,137 +1,159 @@
 import streamlit as st
-from streamlit.components.v1 import html
 
-st.set_page_config(page_title="AI Campus | ScreenerPro", layout="wide")
+st.set_page_config(page_title="AI Campus", layout="wide")
 
-# ---------------------------- STYLES ----------------------------
+# ----------------------- CSS EXACT MATCH -----------------------
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
-
+/* GLOBAL */
 body, [class*="css"] {
     font-family: 'Inter', sans-serif !important;
 }
 
-/* Gradient Background */
-.hero-section {
-    background: linear-gradient(135deg, #fdfbff 0%, #f3f1ff 40%, #ffffff 100%);
-    padding: 80px 0px;
-    border-radius: 0px 0px 40px 40px;
+/* TOP FADED BAR */
+.top-gradient {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(180deg, #f8f6ff 0%, #f3f0ff 60%, rgba(255,255,255,0) 100%);
+    border-radius: 0 0 40px 40px;
+    margin-bottom: -80px;
 }
 
-/* Headline */
+/* BADGE */
+.badge {
+    display: inline-block;
+    background: #ebe4ff;
+    color: #4b2bb6;
+    padding: 10px 25px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    margin-left: 40px;
+}
+
+/* MAIN HERO */
 .hero-title {
-    font-size: 54px;
+    font-size: 50px;
     font-weight: 800;
-    line-height: 1.2;
-    color: #1f1f1f;
+    line-height: 1.15;
+    margin-top: 30px;
+    margin-left: 40px;
 }
 
 .ai-gradient {
-    background: linear-gradient(90deg, #a855f7, #f4c763);
+    background: linear-gradient(90deg, #b06bff, #ffce64);
     -webkit-background-clip: text;
     color: transparent;
 }
 
-/* Subtext */
-.hero-subtext {
+.hero-desc {
     font-size: 18px;
-    color: #5b5568;
+    color: #4b4b4b;
+    max-width: 520px;
+    margin-left: 40px;
     margin-top: 20px;
-    max-width: 600px;
 }
 
-/* Buttons */
-.btn-primary {
-    display: inline-block;
-    padding: 14px 28px;
-    background: #facc15;
-    border-radius: 25px;
-    font-weight: 600;
-    color: black;
-    text-decoration: none;
-}
-
+/* BUTTONS */
 .btn-outline {
     display: inline-block;
-    padding: 14px 28px;
-    border: 2px solid #d4d4d8;
-    border-radius: 25px;
+    padding: 14px 30px;
+    border: 2px solid #dcdcdc;
+    border-radius: 35px;
     font-weight: 600;
-    color: #333;
+    color: #1f1f1f;
     text-decoration: none;
+    margin-left: 40px;
 }
 
-/* Top Badge */
-.top-badge {
-    background: #ede9fe;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 14px;
+.btn-primary {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #ffd21f;
+    border-radius: 35px;
     font-weight: 600;
-    color: #6b21a8;
+    color: #1f1f1f;
+    text-decoration: none;
+    margin-left: 20px;
 }
 
-/* Right Side Circle Illustration Placeholder */
-.circle-container {
-    width: 480px;
-    height: 480px;
+/* RIGHT SIDE ORBIT */
+.orbit-wrapper {
+    position: relative;
+    width: 550px;
+    height: 550px;
+    margin-top: -30px;
+}
+
+.orbit-circle {
+    width: 100%;
+    height: 100%;
+    border: 2px dotted #d9caff;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(148,107,255,0.4) 0%, rgba(235,228,255,0.1) 70%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px dotted #dcd2ff;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
-.circle-center {
+/* GLOW BACKGROUND */
+.glow {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(200,160,255,0.35), rgba(255,255,255,0));
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+/* CENTER ROUNDED BOX */
+.center-box {
     width: 180px;
     height: 180px;
-    background: radial-gradient(circle, #ffffff, #e8ddff);
+    background: radial-gradient(circle, #ffffff, #ede3ff);
     border-radius: 30px;
-    box-shadow: 0 0 30px rgba(140,82,255,0.25);
+    position: absolute;
+    top: 185px;
+    right: 185px;
+    box-shadow: 0 0 60px rgba(160,110,255,0.25);
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------------------- LAYOUT ----------------------------
-hero = st.container()
-with hero:
-    st.markdown('<div class="hero-section">', unsafe_allow_html=True)
+# ------------------ TOP GRADIENT STRIP ------------------
+st.markdown('<div class="top-gradient"></div>', unsafe_allow_html=True)
 
-    col1, col2 = st.columns([1.2, 1])
+# ------------------ HERO SECTION ------------------
+col1, col2 = st.columns([1.2, 1])
 
-    with col1:
-        st.markdown("""<p class="top-badge">Built by IIT-Madras & TU Delft Alumni</p>""", unsafe_allow_html=True)
+with col1:
+    st.markdown('<div class="badge">Built by IIT-Madras & TU Delft Alumni</div>', unsafe_allow_html=True)
 
-        st.markdown("""
+    st.markdown("""
         <h1 class="hero-title">
             Transform Your Institution<br>
             into an <span class="ai-gradient">AI Campus</span>
         </h1>
-        """, unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-        st.markdown("""
-        <p class="hero-subtext">
-        ScreenerPro empowers educational institutions with <strong>Intelligent Learning Infrastructure (ILI)</strong> 
-        to personalize learning, enhance curriculum, reduce faculty workload, 
+    st.markdown("""
+        <p class="hero-desc">
+        ScreenerPro empowers educational institutions with <b>Intelligent Learning Infrastructure (ILI)</b>
+        to personalize learning, enhance curriculum, reduce faculty workload,
         and improve student outcomes via AI-powered analytics.
         </p>
-        """, unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-        st.write("<br>", unsafe_allow_html=True)
+    st.markdown("""
+        <a href="#" class="btn-outline">Book a Demo</a>
+        <a href="#" class="btn-primary">Initiate Pilot</a>
+    """, unsafe_allow_html=True)
 
-        c1, c2 = st.columns([0.4, 0.6])
-        with c1:
-            st.markdown('<a class="btn-outline" href="#">Book a Demo</a>', unsafe_allow_html=True)
-        with c2:
-            st.markdown('<a class="btn-primary" href="#">Initiate Pilot</a>', unsafe_allow_html=True)
-
-    with col2:
-        st.markdown("""
-        <div class="circle-container">
-            <div class="circle-center"></div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.markdown('</div>', unsafe_allow_html=True)
+with col2:
+    st.markdown("""
+    <div class="orbit-wrapper">
+        <div class="orbit-circle"></div>
+        <div class="glow"></div>
+        <div class="center-box"></div>
+    </div>
+    """, unsafe_allow_html=True)
